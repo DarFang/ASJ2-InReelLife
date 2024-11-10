@@ -10,11 +10,14 @@ public class PhraseDisplay : MonoBehaviour
     [SerializeField] TMP_Text WrongWord;
     [SerializeField] TMP_Text Word;
     [SerializeField] PhraseSO phraseSO;
+    public PhraseSO PhraseSO { get { return phraseSO; } }
     bool stateCorrectLetter;
+    TypingGameController typingGameController;
 
-    public void Initialize(PhraseSO phraseSO)
+    public void Initialize(PhraseSO phraseSO, TypingGameController typingGameController)
     {
         this.phraseSO = phraseSO;
+        this.typingGameController = typingGameController;
         SetWord();
     }
     public void CheckKey(char value)
@@ -64,7 +67,7 @@ public class PhraseDisplay : MonoBehaviour
     void RemoveRedLetter()
     {
         WrongWord.text = WrongWord.text.Substring(1);
-        if(Word.text.Length <= 0)
+        if(WrongWord.text.Length <= 0)
         {
             CompleteWord();
         }
@@ -75,6 +78,7 @@ public class PhraseDisplay : MonoBehaviour
     }
     void CompleteWord()
     {
+        typingGameController.RemovePhrase(this);
         Destroy(gameObject);
     }
     public void ResetWord()
