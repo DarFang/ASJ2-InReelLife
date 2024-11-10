@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 956992462}
   - component: {fileID: 956992466}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameControllerFishing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

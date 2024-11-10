@@ -16,19 +16,15 @@ public class PhraseDisplay : MonoBehaviour
         this.phraseSO = phraseSO;
         SetWord();
     }
-    private void Update() 
+    public void CheckKey(char value)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(value == char.ToLower(WrongWord.text[0]))
         {
             CorrectLetter();
         }
-        if(Input.GetKeyDown(KeyCode.Q))
+        else
         {
             WrongLetter();
-        }
-        if(Input.GetKeyDown(KeyCode.Backspace))
-        {
-            ResetWord();
         }
     }
     void SetWord()
@@ -80,7 +76,7 @@ public class PhraseDisplay : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    void ResetWord()
+    public void ResetWord()
     {
         Word.text = FinishedWord.text;
         WrongWord.text = FinishedWord.text;
