@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34630714cdfdfc24e9029c579554cd0c, type: 3}
-  m_Name: '#1 Phrase'
+  m_Name: '#2 Phrase'
   m_EditorClassIdentifier: 
-  Value: i am from canada
+  Value: hi there
   tier: 0

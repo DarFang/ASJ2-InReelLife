@@ -11,6 +11,7 @@ public class PhraseDisplay : MonoBehaviour
     [SerializeField] TMP_Text Word;
     [SerializeField] PhraseSO phraseSO;
     bool stateCorrectLetter;
+
     public void Initialize(PhraseSO phraseSO)
     {
         this.phraseSO = phraseSO;
