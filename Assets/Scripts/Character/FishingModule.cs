@@ -1,18 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FishingModule : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] bool isFishingAvailable;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    public void EnableFishing()
+    {
+        isFishingAvailable = true;
+    }
+    public void DisableFishing()
+    {
+        isFishingAvailable = false;
+    }
+
+    public void AttemptToFish()
+    {
+        if(isFishingAvailable)
+        {
+            Debug.Log("You can fish");
+        }
+        else
+        {
+            Debug.Log("You cannot fish at this time");
+        }
     }
 }

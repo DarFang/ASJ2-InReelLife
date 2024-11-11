@@ -29,9 +29,10 @@ public class InputController : MonoBehaviour
         }
         if(fishingModule != null && Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("fishing");
+            fishingModule.AttemptToFish();
         }
 
 
     }
+    public FishingModule FishingModule => fishingModule;
 }
