@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34630714cdfdfc24e9029c579554cd0c, type: 3}
   m_Name: '#9 Phrase'
   m_EditorClassIdentifier: 
-  Value: welcome to chillies
+  Value: millitary
   tier: 0
