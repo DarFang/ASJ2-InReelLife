@@ -7,9 +7,10 @@ public class FishingModule : MonoBehaviour
 {
     [SerializeField] bool isFishingAvailable;
     FishAreaNumber fishAreaNumber;
+    InputController inputController;
     void Start()
     {
-        
+        inputController = GetComponent<InputController>();
     }
     void Update()
     {
@@ -29,7 +30,14 @@ public class FishingModule : MonoBehaviour
     {
         if(isFishingAvailable)
         {
-            GameManager.Instance.StartFishing(fishAreaNumber);
+            if(inputController.playerState.Equals(PlayerState.FishingIdle))
+            {
+                GameManager.Instance.CancelFishing();
+            }
+            else
+            {
+                GameManager.Instance.StartFishing(fishAreaNumber);
+            }
         }
         else
         {

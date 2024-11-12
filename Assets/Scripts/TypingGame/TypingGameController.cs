@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,14 +13,24 @@ public class TypingGameController : MonoBehaviour
     [SerializeField] PhraseSO phraseSO;
     [SerializeField] List<PhraseSO> LootTable;
     [SerializeField] List<PhraseSO> PopulatedPhrases;
-    List<PhraseDisplay> PhraseDisplays;
+    List<PhraseDisplay> PhraseDisplays  = new List<PhraseDisplay>();
     [SerializeField] int padding = 30;
     Queue<List<PhraseSO>> PopulatedPhrases2 = new Queue<List<PhraseSO>>();
     private void Start() 
     {
         // currentPhraseDisplay = Instantiate(phraseDisplayPrefab, this.transform);
         // currentPhraseDisplay.Initialize(phraseSO);
+        // PopulatePhrases(6);
+        gameObject.SetActive(false);
+    }
+    private void OnEnable() 
+    {
         PopulatePhrases(6);
+    }
+    private void OnDisable() 
+    {
+        GameManager.Instance.FinishFishing();
+        gameObject.SetActive(false);
     }
     List<int> RandomList(int number)
     {
@@ -33,8 +44,20 @@ public class TypingGameController : MonoBehaviour
         return list;
 
     }
+    void ResetPhases()
+    {
+        foreach (var item in PhraseDisplays)
+        {
+            Destroy(item.gameObject);
+        }
+        PopulatedPhrases2 = new Queue<List<PhraseSO>>();
+    }
     public void PopulatePhrases(int valueToPopulate = 3)
     {
+        if(PhraseDisplays.Count != 0)
+        {
+            ResetPhases();
+        }
         PhraseDisplays = new List<PhraseDisplay>();
         List<PhraseSO> tempLootTable = new List<PhraseSO>(LootTable);
         List<PhraseSO> tempRemovedLootTable = new List<PhraseSO>();
@@ -173,6 +196,7 @@ public class TypingGameController : MonoBehaviour
             else
             {
                 Debug.Log("you win");
+                gameObject.SetActive(false);
             }
         }
     }

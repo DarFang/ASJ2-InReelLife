@@ -38,9 +38,7 @@ public class PhraseDisplay : MonoBehaviour
             Debug.LogError("phrase is missing");
             return;
         }
-        FinishedWord.text = phraseSO.Value;
-        WrongWord.text = phraseSO.Value;
-        Word.text = phraseSO.Value;
+        ResetWord();
         GetComponent<TextWidthSize>()?.UpdateWidth();
         stateCorrectLetter = true;
     }
@@ -83,7 +81,8 @@ public class PhraseDisplay : MonoBehaviour
     }
     public void ResetWord()
     {
-        Word.text = FinishedWord.text;
-        WrongWord.text = FinishedWord.text;
+        FinishedWord.text = phraseSO.Value;
+        WrongWord.text = phraseSO.Value;
+        Word.text = phraseSO.Value;
     }
 }
