@@ -6,6 +6,7 @@ using UnityEngine;
 public class FishingModule : MonoBehaviour
 {
     [SerializeField] bool isFishingAvailable;
+    FishAreaNumber fishAreaNumber;
     void Start()
     {
         
@@ -14,9 +15,10 @@ public class FishingModule : MonoBehaviour
     {
         
     }
-    public void EnableFishing()
+    public void EnableFishing(FishAreaNumber fishAreaNumber)
     {
         isFishingAvailable = true;
+        this.fishAreaNumber = fishAreaNumber;
     }
     public void DisableFishing()
     {
@@ -27,7 +29,7 @@ public class FishingModule : MonoBehaviour
     {
         if(isFishingAvailable)
         {
-            Debug.Log("You can fish");
+            GameManager.Instance.StartFishing(fishAreaNumber);
         }
         else
         {

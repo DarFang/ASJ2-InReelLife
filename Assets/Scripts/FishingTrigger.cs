@@ -8,7 +8,7 @@ public class FishingTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Water"))
         {
-            inputController.FishingModule.EnableFishing();
+            inputController.FishingModule.EnableFishing(other.GetComponent<FishingPond>().fishAreaNumber);
         }
     }
     private void OnTriggerExit(Collider other) {
@@ -17,4 +17,12 @@ public class FishingTrigger : MonoBehaviour
             inputController.FishingModule.DisableFishing();
         }
     }
+}
+public enum FishAreaNumber
+{
+    Area1,
+    Area2,
+    Area3,
+    Area4,
+
 }
