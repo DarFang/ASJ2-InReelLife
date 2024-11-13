@@ -13,6 +13,7 @@ public class InputController : MonoBehaviour
     public bool isMoving { get; private set; }
     private void Update() 
     {
+        if(GameManager.Instance.dialog.IsRunning) return;
         if(playerState == PlayerState.FishingFish) return;
         if(fishingModule != null && Input.GetKeyDown(KeyCode.R))
         {
@@ -24,7 +25,6 @@ public class InputController : MonoBehaviour
             interactModule.AttemptToInteract();
 
         }
-        if(playerState == PlayerState.Interacting) return;
 
 
         moveDirection.x = Input.GetAxisRaw("Horizontal");

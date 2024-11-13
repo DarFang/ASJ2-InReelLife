@@ -6,14 +6,18 @@ using System.Text.RegularExpressions;
 public class Dialog : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textComponent;
+    [SerializeField] GameObject DialogObject;
     public string Name;
     public string[] lines;
     public float textSpeed;
     private int index;
+    public bool IsRunning {get{return isRunning;}}
+    private bool isRunning = false;
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialog();
+        isRunning = true;
     }
     void Update()
     {
@@ -78,7 +82,13 @@ public class Dialog : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            StartCoroutine(FinishDialog());
         }
+    }
+    IEnumerator FinishDialog()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isRunning = false;
+        DialogObject.SetActive(false);
     }
 }

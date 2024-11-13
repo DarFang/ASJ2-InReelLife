@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 543114908}
   - component: {fileID: 543114907}
   - component: {fileID: 543114906}
+  - component: {fileID: 543114910}
   m_Layer: 5
   m_Name: DialogBoard
   m_TagString: Untagged
@@ -787,6 +788,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &543114910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543114905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ba8c74d33042846975b0c37c3381b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 417783728}
+  DialogObject: {fileID: 1427989513}
+  Name: 
+  lines:
+  - hi there
+  - Name <color="red">hi
+  textSpeed: 0.05
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +867,6 @@ GameObject:
   - component: {fileID: 1427989514}
   - component: {fileID: 1427989517}
   - component: {fileID: 1427989516}
-  - component: {fileID: 1427989515}
   m_Layer: 5
   m_Name: DialogBox
   m_TagString: Untagged
@@ -876,24 +895,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: -100, y: 500}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1427989515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427989513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7ba8c74d33042846975b0c37c3381b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 417783728}
-  Name: 
-  lines:
-  - hi there
-  - Name <color="red">hi
-  textSpeed: 0.05
 --- !u!114 &1427989516
 MonoBehaviour:
   m_ObjectHideFlags: 0
