@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+[System.Serializable]
 public class Inventory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public List<Fish> fishList;
+    public RawImage image;
+    private void Start() {
+        fishList = new List<Fish>();
+        fishList.Add(new Fish(image, "string"));
     }
 }
