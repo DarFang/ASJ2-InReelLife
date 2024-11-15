@@ -15,9 +15,7 @@ public class Dialog : MonoBehaviour
     private bool isRunning = false;
     void Start()
     {
-        textComponent.text = string.Empty;
-        StartDialog();
-        isRunning = true;
+        // StartDialog();
     }
     void Update()
     {
@@ -36,6 +34,8 @@ public class Dialog : MonoBehaviour
     }
     void StartDialog()
     {
+        textComponent.text = string.Empty;
+        isRunning = true;
         index = 0;
         StartCoroutine(TypeLine());
     }
