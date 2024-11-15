@@ -13,6 +13,10 @@ public class PhraseDisplay : MonoBehaviour
     public PhraseSO PhraseSO { get { return phraseSO; } }
     bool stateCorrectLetter;
     TypingGameController typingGameController;
+    int index = 0;
+    const string WRONGLETTERCOLOR = "<color=\"red\">";
+    const string CORRECTLETTERCOLOR = "<color=\"grey\">";
+    const string OGLETTERCOLOR = "<color=\"white\">";
 
     public void Initialize(PhraseSO phraseSO, TypingGameController typingGameController)
     {
@@ -22,7 +26,7 @@ public class PhraseDisplay : MonoBehaviour
     }
     public void CheckKey(char value)
     {
-        if(value == char.ToLower(WrongWord.text[0]))
+        if(value == char.ToLower(phraseSO.Value[index]))
         {
             CorrectLetter();
         }
@@ -44,35 +48,19 @@ public class PhraseDisplay : MonoBehaviour
     }
     void WrongLetter()
     {
-        if(stateCorrectLetter)
-        {
-            RemoveOGLetter();
-            stateCorrectLetter = false;
-        }
+        Word.text = CORRECTLETTERCOLOR + phraseSO.Value.Substring(0, index) + 
+                    WRONGLETTERCOLOR + phraseSO.Value[index] + 
+                    OGLETTERCOLOR + phraseSO.Value.Substring(index+1);
     }
     void CorrectLetter()
     {
-        if (stateCorrectLetter)
-        {
-            RemoveOGLetter();
-        }
-        else
-        {
-            stateCorrectLetter = true;
-        }
-        RemoveRedLetter();
-    }
-    void RemoveRedLetter()
-    {
-        WrongWord.text = WrongWord.text.Substring(1);
-        if(WrongWord.text.Length <= 0)
+        index ++;
+        if(index > phraseSO.Value.Length - 1)
         {
             CompleteWord();
         }
-    }
-    void RemoveOGLetter()
-    {
-        Word.text = Word.text.Substring(1);
+        Word.text = CORRECTLETTERCOLOR + phraseSO.Value.Substring(0, index) + 
+                    OGLETTERCOLOR + phraseSO.Value.Substring(index);
     }
     void CompleteWord()
     {
@@ -81,6 +69,7 @@ public class PhraseDisplay : MonoBehaviour
     }
     public void ResetWord()
     {
+        index = 0;
         FinishedWord.text = phraseSO.Value;
         WrongWord.text = phraseSO.Value;
         Word.text = phraseSO.Value;

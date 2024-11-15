@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     InputController inputController;
     LootSO currentLoot = null;
     TypingGameController typingGameController;
+    public Dialog dialog { get; private set;}
     
     private void Awake() 
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         fishingPool = FindObjectOfType<FishingPool>();
         inputController = FindObjectOfType<InputController>();
         typingGameController = FindObjectOfType<TypingGameController>();
+        dialog = FindObjectOfType<Dialog>();
     }
     public void StartFishing(FishAreaNumber fishArea)
     {
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadingFish());
     }
 
-    internal void CancelFishing()
+    public void CancelFishing()
     {
         inputController.playerState = PlayerState.Idle;
         Debug.Log("cancellingFishing");
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal void FinishFishing()
+    public void FinishFishing()
     {
         inputController.playerState = PlayerState.Idle;
     }
