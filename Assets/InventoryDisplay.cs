@@ -29,6 +29,14 @@ public class InventoryDisplay : MonoBehaviour
             isActive = !isActive;
             MainInventory.SetActive(isActive);
             LoadInventory();
+            if(isActive)
+            {
+                GameManager.Instance.DisablePlayerInput();
+            }
+            else
+            {
+                GameManager.Instance.EnablePlayerInput();
+            }
         }
         if(!isActive) return;
         if (Input.GetKeyDown(KeyCode.D))
