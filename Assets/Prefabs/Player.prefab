@@ -337,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebddd1042624944c92f2236535de690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishList: []
+  image: {fileID: 21300000, guid: 77695a796ef14494f8dcfe3de478bef0, type: 3}
 --- !u!114 &7193040143351638913
 MonoBehaviour:
   m_ObjectHideFlags: 0
