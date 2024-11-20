@@ -13,7 +13,8 @@ public class Inventory : MonoBehaviour
     int inventoryLimit = 10;
     public int InventoryFishSize {get{return inventoryFishSize;}}
     public int InventoryLimit {get{return inventoryLimit;}}
-    int Money = 0;
+    [SerializeField] int money = 0;
+    public int Money {get{return money;}}
     private void Start() {
         fishList = new List<Fish>();
         AddFish();
@@ -66,21 +67,23 @@ public class Inventory : MonoBehaviour
         }
         return null;
     }
-    public void AttemptToAddItem(ShopItem shopitem)
+    public bool AttemptToAddItem(ShopItem shopitem)
     {
-        if (shopitem.Cost > Money)
+        if (shopitem.Cost > money)
         {
             Debug.Log("not enough currency");
+            return false;
         }
         else
         {
-            Money -= shopitem.Cost;
+            money -= shopitem.Cost;
             AddListItem(shopitem);
+            return true;
         }
     }
 
     private void AddListItem(ShopItem shopitem)
     {
-        throw new NotImplementedException();
+        
     }
 }

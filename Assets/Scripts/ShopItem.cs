@@ -9,8 +9,8 @@ public class ShopItem : ScriptableObject
     [SerializeField] int cost = 1;
     [SerializeField] public Sprite Sprite;
     [SerializeField] public String Name;
-    public void PurchaseItem()
+    public bool AttemptToPurchaseItem()
     {
-        GameManager.Instance.PurchaseItem(this);
+        return GameManager.Instance.AttemptPurchaseItem(this);
     }
 }

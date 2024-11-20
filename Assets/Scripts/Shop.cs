@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
     List<ShopDisplay> ShopItemDisplay;
-    [SerializeField] ShopDisplay shopDisplay;
+    [SerializeField] ShopDisplay shopDisplayPrefab;
     [SerializeField] Transform SellTransform;
     [SerializeField] List<ShopItem> shopItems;
+    [SerializeField] TextMeshProUGUI PlayerBank;
     int SelectedIndex = 0;
     private void Start() 
     {
         ShopItemDisplay = new List<ShopDisplay>();
         InitializeInventory();
+        UpdatePlayerBank();
     }
     private void Update() 
     {
@@ -34,14 +38,30 @@ public class Shop : MonoBehaviour
                 ShopItemDisplay[SelectedIndex].Select();
             }
         }
+        else if(Input.GetKeyDown(KeyCode.Space))
+        {
+            AttempToPurchaseItem();
+        }
     }
+
+    private void AttempToPurchaseItem()
+    {
+        shopItems[SelectedIndex].AttemptToPurchaseItem();
+        UpdatePlayerBank();
+    }
+
+    void UpdatePlayerBank()
+    {
+        PlayerBank.text = GameManager.Instance.GetPlayerBank().ToString();
+    }
+
 
     void InitializeInventory()
     {
         SelectedIndex = 0;
         foreach(ShopItem shopItem in shopItems)
         {
-            ShopDisplay temp = Instantiate(shopDisplay, SellTransform);
+            ShopDisplay temp = Instantiate(shopDisplayPrefab, SellTransform);
             temp.Initialize(shopItem);
             ShopItemDisplay.Add(temp);
         }
