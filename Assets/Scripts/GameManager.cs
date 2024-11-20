@@ -62,5 +62,20 @@ public class GameManager : MonoBehaviour
     public void FinishFishing()
     {
         inputController.playerState = PlayerState.Idle;
+        EnablePlayerInput();
+    }
+    public void DisablePlayerInput()
+    {
+        inputController.enabled = false;
+    }
+    public void EnablePlayerInput()
+    {
+        inputController.enabled = true;
+    }
+
+    public void PurchaseItem(ShopItem shopItem)
+    {
+        Inventory inventory = inputController.GetComponent<Inventory>();
+        inventory.AttemptToAddItem(shopItem);
     }
 }
