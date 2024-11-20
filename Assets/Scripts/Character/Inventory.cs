@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 [System.Serializable]
@@ -11,6 +13,7 @@ public class Inventory : MonoBehaviour
     int inventoryLimit = 10;
     public int InventoryFishSize {get{return inventoryFishSize;}}
     public int InventoryLimit {get{return inventoryLimit;}}
+    int Money = 0;
     private void Start() {
         fishList = new List<Fish>();
         AddFish();
@@ -62,5 +65,22 @@ public class Inventory : MonoBehaviour
             }
         }
         return null;
+    }
+    public void AttemptToAddItem(ShopItem shopitem)
+    {
+        if (shopitem.Cost > Money)
+        {
+            Debug.Log("not enough currency");
+        }
+        else
+        {
+            Money -= shopitem.Cost;
+            AddListItem(shopitem);
+        }
+    }
+
+    private void AddListItem(ShopItem shopitem)
+    {
+        throw new NotImplementedException();
     }
 }
