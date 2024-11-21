@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
     [SerializeField] InteractModule interactModule;
     public PlayerState playerState = PlayerState.Idle;
     public bool isMoving { get; private set; }
+
     private void Update() 
     {
         if(GameManager.Instance.dialog.IsRunning) return;

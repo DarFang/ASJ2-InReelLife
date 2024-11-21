@@ -948,6 +948,7 @@ MonoBehaviour:
   movementModule: {fileID: 4638597909676021698}
   fishingModule: {fileID: 5838518257978390953}
   interactModule: {fileID: 6622616103451038557}
+  playerInventory: {fileID: 1870895659855097995}
   playerState: 0
 --- !u!114 &1870895659855097995
 MonoBehaviour:
