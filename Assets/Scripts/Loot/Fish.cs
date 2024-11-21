@@ -8,12 +8,15 @@ using UnityEngine.UI;
 public class Fish 
 {
     [SerializeField] Sprite image;
-    [SerializeField] string value = "";
-    public Fish(Sprite image, string value)
+    [SerializeField] string name = "";
+    [SerializeField] int cost = 5;
+    public Fish(Sprite image, string name, int cost = 5)
     {
         this.image = image;
-        this.value = value;
+        this.name = name;
+        this.cost = cost;
     }
-    public string Value  { get { return value; } }
+    public string Value  { get { return name; } }
     public Sprite Image  { get { return image; } }
+    public int Cost  { get { return cost; } }
 }

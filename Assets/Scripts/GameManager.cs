@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
         Inventory inventory = inputController.GetComponent<Inventory>();
         return inventory.AttemptToAddItem(shopItem);
     }
+    public void SellAllInventory()
+    {
+        inputController.GetComponent<Inventory>().SellAllInventory();
+    }
     public int GetPlayerBank()
     {
         return inputController.GetComponent<Inventory>().Money;

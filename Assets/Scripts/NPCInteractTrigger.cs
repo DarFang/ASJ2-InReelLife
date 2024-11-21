@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCInteractTrigger : MonoBehaviour
+public abstract class NPCInteractTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player"))
@@ -16,4 +16,6 @@ public class NPCInteractTrigger : MonoBehaviour
             other.GetComponent<InteractModule>().DisableInteraction();
         }
     }
+    public abstract void Interact();
+
 }

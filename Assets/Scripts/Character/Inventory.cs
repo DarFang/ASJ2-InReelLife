@@ -86,4 +86,15 @@ public class Inventory : MonoBehaviour
     {
         
     }
+    public void SellAllInventory()
+    {
+        if (fishList.Count <= 0) return;
+        int TotalCost = 0;
+        foreach (var item in fishList)
+        {
+            TotalCost += item.Cost;
+        }
+        fishList = new List<Fish>();
+        money += TotalCost;
+    }
 }

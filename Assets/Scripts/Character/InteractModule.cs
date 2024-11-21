@@ -21,7 +21,7 @@ public class InteractModule : MonoBehaviour
     {
         if(interact != null)
         {
-            Debug.Log("interact");
+            interact.Interact();
         }
         else
         {

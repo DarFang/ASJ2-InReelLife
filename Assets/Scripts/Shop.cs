@@ -11,12 +11,15 @@ public class Shop : MonoBehaviour
     [SerializeField] Transform SellTransform;
     [SerializeField] List<ShopItem> shopItems;
     [SerializeField] TextMeshProUGUI PlayerBank;
+    [SerializeField] GameObject shopCanvas;
+    [SerializeField] ShopNPC shopNPC;
     int SelectedIndex = 0;
     private void Start() 
     {
         ShopItemDisplay = new List<ShopDisplay>();
         InitializeInventory();
         UpdatePlayerBank();
+        CloseShop();
     }
     private void Update() 
     {
@@ -42,6 +45,14 @@ public class Shop : MonoBehaviour
         {
             AttempToPurchaseItem();
         }
+        else if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SellAll();
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            shopNPC.Interact();
+        }
     }
 
     private void AttempToPurchaseItem()
@@ -55,7 +66,6 @@ public class Shop : MonoBehaviour
         PlayerBank.text = GameManager.Instance.GetPlayerBank().ToString();
     }
 
-
     void InitializeInventory()
     {
         SelectedIndex = 0;
@@ -67,6 +77,19 @@ public class Shop : MonoBehaviour
         }
         ShopItemDisplay[SelectedIndex].Select();
     }
-
-
+    void SellAll()
+    {
+        GameManager.Instance.SellAllInventory();
+        UpdatePlayerBank();
+    }
+    public void OpenShop()
+    {
+        enabled = true;
+        shopCanvas.SetActive(true);
+    }
+    public void CloseShop()
+    {
+        enabled = false;
+        shopCanvas.SetActive(false);
+    }
 }
