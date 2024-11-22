@@ -1,10 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
+using System.IO;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TypingGameController : MonoBehaviour
 {
@@ -21,23 +19,26 @@ public class TypingGameController : MonoBehaviour
         // currentPhraseDisplay = Instantiate(phraseDisplayPrefab, this.transform);
         // currentPhraseDisplay.Initialize(phraseSO);
         // PopulatePhrases(6);
+        LootTable = ParseCSV("Phrase Bank.csv");
         gameObject.SetActive(false);
     }
     private void OnEnable() 
     {
         PopulatePhrases(6);
+        StartCoroutine(TickDisplay());
     }
     private void OnDisable() 
     {
         GameManager.Instance.FinishFishing();
         gameObject.SetActive(false);
+        StopAllCoroutines();
     }
     List<int> RandomList(int number)
     {
         List<int> list = new List<int>();
         while(number > 0)
         {
-            int randomNum = Random.Range(1, System.Math.Min(3, number) + 1);
+            int randomNum = UnityEngine.Random.Range(1, System.Math.Min(3, number) + 1);
             list.Add(randomNum);
             number -= randomNum;
         }
@@ -69,7 +70,7 @@ public class TypingGameController : MonoBehaviour
             while (valueToPopulateLeft > 0)
             {
                 valueToPopulateLeft--;
-                PhraseSO phraseSOtemp = tempLootTable[Random.Range(0, tempLootTable.Count)];
+                PhraseSO phraseSOtemp = tempLootTable[UnityEngine.Random.Range(0, tempLootTable.Count)];
                 PopulatedPhrases.Add(phraseSOtemp);
                 tempLootTable.Remove(phraseSOtemp);
                 (tempLootTable, tempRemovedLootTable) = RemoveSameFirstLettersFromList(tempLootTable, phraseSOtemp);
@@ -83,7 +84,7 @@ public class TypingGameController : MonoBehaviour
     private void DisplayPhrases(List<PhraseSO> PhrasesToDisplay)
     {
         PhraseDisplays = new List<PhraseDisplay>();
-        int AngleOffset = Random.Range(0, 360);
+        int AngleOffset = UnityEngine.Random.Range(0, 360);
         for (int i = 0; i < PhrasesToDisplay.Count; i++)
         {
             currentPhraseDisplay = Instantiate(phraseDisplayPrefab, this.transform);
@@ -96,8 +97,8 @@ public class TypingGameController : MonoBehaviour
 
     Vector2 returnPoint(int index, int total, int offset)
     {
-        int baseAngle = Random.Range(index*360/total + offset + padding, (index+1)*360/total + offset - padding);
-        int range = Random.Range(200, 400);
+        int baseAngle = UnityEngine.Random.Range(index*360/total + offset + padding, (index+1)*360/total + offset - padding);
+        int range = UnityEngine.Random.Range(200, 400);
         float angleInRadians = baseAngle * Mathf.Deg2Rad;
         float x = Mathf.Cos(angleInRadians);
         float y = Mathf.Sin(angleInRadians);
@@ -127,6 +128,21 @@ public class TypingGameController : MonoBehaviour
     {
         CheckForPlayerInput();
     }
+    IEnumerator TickDisplay()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.05f);
+            if(PhraseDisplays.Count>0)
+            {
+                foreach (var item in PhraseDisplays)
+                {
+                    item.Tick();
+                }
+            }
+        }
+        
+    }
 
     private void CheckForPlayerInput()
     {
@@ -139,6 +155,16 @@ public class TypingGameController : MonoBehaviour
                     CheckKey(letter);
                     return;
                 }
+            }
+            if(Input.GetKeyDown(KeyCode.Period))
+            {
+                CheckKey('.');
+                return;
+            }
+            if(Input.GetKeyDown(KeyCode.BackQuote))
+            {
+                CheckKey('\'');
+                return;
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
@@ -157,7 +183,7 @@ public class TypingGameController : MonoBehaviour
     {
         for (int i = 0; i < PhraseDisplays.Count ; i ++)
         {
-            if (PhraseDisplays[i].PhraseSO.Value[0] == letter) 
+            if (char.ToLower(PhraseDisplays[i].PhraseSO.Value[0]) == letter) 
             {
                 currentPhraseDisplay = PhraseDisplays[i];
                 return;
@@ -200,4 +226,37 @@ public class TypingGameController : MonoBehaviour
             }
         }
     }
+    private List<PhraseSO> ParseCSV(string fileName)
+    {
+        List<PhraseSO> results = new List<PhraseSO>();
+        string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
+
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError($"CSV file not found at path: {filePath}");
+            return results;
+        }
+
+        var lines = File.ReadAllLines(filePath);
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            var values = lines[i].Split(',');
+
+            PhraseSO phrase = new PhraseSO
+            {
+                Value = values[1],
+                Tier = values[2],
+                Event = values[3],
+                Location = values[4]
+            };
+            if(phrase.Tier == "Tier0")
+            {
+                results.Add(phrase);
+            }
+        }
+
+        return results;
+    }
 }
+

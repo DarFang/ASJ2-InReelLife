@@ -73,9 +73,21 @@ public class GameManager : MonoBehaviour
         inputController.enabled = true;
     }
 
-    public void PurchaseItem(ShopItem shopItem)
+    public bool AttemptPurchaseItem(ShopItem shopItem)
     {
         Inventory inventory = inputController.GetComponent<Inventory>();
-        inventory.AttemptToAddItem(shopItem);
+        return inventory.AttemptToAddItem(shopItem);
+    }
+    public void SellAllInventory()
+    {
+        inputController.GetComponent<Inventory>().SellAllInventory();
+    }
+    public int GetPlayerBank()
+    {
+        return inputController.GetComponent<Inventory>().Money;
+    }
+    public bool IsPlayerFishing()
+    {
+        return inputController.playerState == PlayerState.FishingFish;
     }
 }

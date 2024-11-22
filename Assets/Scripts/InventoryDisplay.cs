@@ -15,15 +15,16 @@ public class InventoryDisplay : MonoBehaviour
     int gridSize = 5;
     void Awake()
     {
-        inventory = FindObjectOfType<Inventory>();
         MainInventory.SetActive(isActive);
     }
     private void Start() 
     {
+        inventory = FindObjectOfType<Inventory>();
         InitializeInventory();
     }
     private void Update() 
     {
+        if(GameManager.Instance.IsPlayerFishing()) return;
         if (Input.GetKeyDown(KeyCode.B))
         {
             isActive = !isActive;
@@ -96,7 +97,7 @@ public class InventoryDisplay : MonoBehaviour
         {
             if(inventory.fishList.Count > i)
             {
-                FishInventoryDisplay[i].UpdateDisplay(inventory.fishList[i].Image);
+                FishInventoryDisplay[i].UpdateDisplay(FishToSpriteMap.Instance.ReturnSprite(inventory.fishList[i].Value));
             }
             else
             {

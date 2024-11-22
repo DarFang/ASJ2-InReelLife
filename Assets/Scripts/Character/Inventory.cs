@@ -7,16 +7,25 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Inventory : MonoBehaviour
 {
-    public List<Fish> fishList;
-    public Sprite image;
+    public List<Fish> fishList = new List<Fish>();
     int inventoryFishSize = 25;
     int inventoryLimit = 10;
     public int InventoryFishSize {get{return inventoryFishSize;}}
     public int InventoryLimit {get{return inventoryLimit;}}
-    int Money = 0;
+    [SerializeField] int money = 0;
+    public int Money {get{return money;}}
     private void Start() {
-        fishList = new List<Fish>();
+        InventoryData playerInventory = SaveLoadManager.Instance.LoadInventoryState();
+        fishList = playerInventory.fishList;
+        inventoryFishSize = playerInventory.inventoryFishSize;
+        inventoryLimit = playerInventory.inventoryLimit;
+        money = playerInventory.Money;
         AddFish();
+    }
+    private void OnDestroy() 
+    {
+        InventoryData playerInventory = new InventoryData(fishList, inventoryFishSize, inventoryLimit, Money);
+        SaveLoadManager.Instance.SaveInventoryState(playerInventory);
     }
     void AddFish()
     {
@@ -25,7 +34,7 @@ public class Inventory : MonoBehaviour
             Debug.Log("cannot add anymore fish");
             return;   
         }
-        fishList.Add(new Fish(image, "string"));
+        fishList.Add(new Fish("string"));
         Debug.Log("addfish");
     }
     private void Update() 
@@ -66,21 +75,56 @@ public class Inventory : MonoBehaviour
         }
         return null;
     }
-    public void AttemptToAddItem(ShopItem shopitem)
+    public bool AttemptToAddItem(ShopItem shopitem)
     {
-        if (shopitem.Cost > Money)
+        if (shopitem.Cost > money)
         {
             Debug.Log("not enough currency");
+            return false;
         }
         else
         {
-            Money -= shopitem.Cost;
+            money -= shopitem.Cost;
             AddListItem(shopitem);
+            return true;
         }
     }
 
     private void AddListItem(ShopItem shopitem)
     {
-        throw new NotImplementedException();
+        
+    }
+    public void SellAllInventory()
+    {
+        if (fishList.Count <= 0) return;
+        int TotalCost = 0;
+        foreach (var item in fishList)
+        {
+            TotalCost += item.Cost;
+        }
+        fishList = new List<Fish>();
+        money += TotalCost;
+    }
+
+
+
+}
+[System.Serializable]
+public class InventoryData
+{
+    public List<Fish> fishList = new List<Fish>();
+    public int inventoryFishSize = 25;
+    public int inventoryLimit = 10;
+    public int Money = 0;
+    public InventoryData(List<Fish> fishlist, int InventoryFishSize, int inventoryLimit, int Money)
+    {
+        fishList = fishlist;
+        inventoryFishSize = InventoryFishSize;
+        this.inventoryLimit = inventoryLimit;   
+        this.Money = Money;
+    }
+    public InventoryData()
+    {
+        
     }
 }
