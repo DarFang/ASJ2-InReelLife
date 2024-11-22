@@ -1,0 +1,50 @@
+Event,Dialogue,Character,Page
+Intro,"Oh, hey! You're awake! ",Owl,1
+Intro,"Welcome to my humble little shack, dreamer. I found you lying in the sand on the beach to the west of here.",Owl,2
+Intro,"You were lucky I found you before the sun got you, else you'd end up like me! ",Owl,3
+Intro,"Lucky for you, I've got some good ol' PPE that you can use! Though I do expect it to be repaid in time.",Owl,4
+Intro,"Hmmm... you have have a wilderness aura to you, almost as if you were born to fish. I mean, just look at that stoic silence and stance!",Owl,5
+Intro,"Fish would swim up to you, thinking you were a rock!",Owl,6
+Intro,"Here, take these. As for me, I'm here for business. Here to gather as many unmutated fish specifmen as I can, before they're all gone.",Owl,7
+Intro,And you're gonna help me! Think of it as repayment for saving your life! And for letting you stay in this little shack while you're here.,Owl,8
+Intro,"Meet me outside and I'll give you the basics of fishing. Don't worry, it'll be quick, and I'm sure you'll pick it up fast.",Owl,9
+Tutorial,Finally! You really took your time getting out here.,Owl,1
+Tutorial,"Here is a pool of water, you can start fishing by walking to the edge of the water and pressing (F),",Owl,2
+Tutorial,Now's a great time to start reminiscing. Search through your memories and maybe it'll help you with your fishing! Somehow!,Owl,3
+Tutorial,"Each fish is divided into various tiers, with each tier requiring more Fishing Power to catch. Each area has their own set of tiers.",Owl,4
+Tutorial,You can get more Fishing Power by getting better fishing rods or by using more powerful bait.,Owl,5
+Tutorial,"As you fill out your Bestiary, I'll be able to source some better bait, so bring as many different kinds of fish as you can! As they say, ""Gotta catch 'em all!""",Owl,6
+Tutorial,"Oh, before I forget, that bag you have is kinda small, so you won't be able to fit much fish. So just make sure you come visit me often! You can check your inventory by pressing (B)",Owl,7
+Tutorial Fishing,"When you fish, you will see phrases on your screen. You can type these phrases using your keyboard, and each successful phrase typed will increase your fish progress by 1. ",Narrator,1
+Tutorial Fishing,"When your progress is full, you will catch the fish! However, if any phrases go untyped, and their timer runs out, your fishing line will lose health. You can raise your fishing line health by upgrading it. ",Narrator,2
+Tutorial Fishing,You can cancel typing a word by pressing BACKSPACE.,Narrator,3
+Tutorial post fishing,"The sun's been kinda weird for a while now. If you ever do end up fishing during the day, I'm sure you'll find some weird stuff.",Owl,1
+Tutorial post fishing,I'm sure you'll find someone else that can help make use of the weirder fish,Owl,2
+Tutorial post fishing,"I'll let you go for now with some extra bait. Let me know if you need any help, and be sure to bring back a bunch of fish!",Owl,3
+Shopping,"Welcome, welcome. I hope you've got some new fish for me!",Owl,1
+Mutated fish was sold,"Hmm, I see you've been fishing during the day. Well, I won't say no to these,  but they're seen pretty much everywhere. ",Owl,1
+Mutated fish was sold,...I have heard that there's this weirdo hanging around here that likes working on these weird fish to make things. He's actually one of the reasons why I came here.,Owl,2
+Mutated fish was sold,"Maybe he's hiding somewhere in the trees, so try taking a look at any soft looking trees around this path. There's also a chance that one of those fish you've caught can cut some softer trees down.",Owl,3
+First time talking to Bearsmith,...Who's there!?,Bearsmith,1
+First time talking to Bearsmith,"Ah, it's been a while since I've another person, a dreamer no less. What do you need from me?",Bearsmith,2
+First time talking to Bearsmith,This owl guy told me that you'd be able to use these weird looking fish,Player,3
+First time talking to Bearsmith,"Oh! Wait, you have some Mutated Fish! Lemme take a look! ",Bearsmith,4
+First time talking to Bearsmith,"Ahh man, you should have mentioned it earlier! This is pretty exciting!",Bearsmith,5
+First time talking to Bearsmith,"Well, I'll be happy to tell you that if you get me some fish, I can make you some neat looking gear for your fishing expeditions.",Bearsmith,6
+First time talking to Bearsmith,Or even just add some black holes to your bag over there to give you more space!,Bearsmith,7
+First time talking to Bearsmith,...Black holes?,Player,8
+First time talking to Bearsmith,"I'll just let you know what I need, and I can get it to your instantly. Today is a bit of a weird day, but usually I'm here during the night.",Bearsmith,9
+First time talking to Bearsmith,"I'm looking forward to the new things you'll bring me, my new no-fur friend!",Bearsmith,10
+Smithing,"Oh, welcome back! What new goodies have you got this time?",Bearsmith,1
+Mirror Night 1,"Hey, how's it going? The doc's been saying that you've been stable, but we don't know when you'll wake up.",Narrator,1
+Mirror Night 1,*sigh* I'm sorry. I wish I didn't try to convince you to go. This wouldn't have happened. I'm sorry.,Narrator,2
+Mirror Night 2,"I'm back, how're the dreams? I've just been toiling away at work, so not much on my end.",Narrator,1
+Mirror Night 2,The house has been pretty lonely without you. I just wake up expecting to see you at the table reading.,Narrator,2
+Mirror Night 2,"...Hey, so when you wake up...",Narrator,3
+Mirror Night 2,Let's go on that camping trip.,Narrator,4
+Mirror Repeat,The mirror has no reflection.,Narrator,1
+Mirror Day 1,"Screams reverberate through the air, intensifying as the fire in the mirror roars.",Narrator,1
+Mirror Day 2,"You see two figures sitting around a dinner table, laughing.",Narrator,1
+Mirror Day 2,"Their voices are muffled, but you can sense their good vibes.",Narrator,2
+Mirror Day Repeat,The sunlight reflects off the mirror onto your body. ,Narrator,1
+Mirror Day Repeat,It feels as if it's going to burn a hole in your body.,Narrator,2
