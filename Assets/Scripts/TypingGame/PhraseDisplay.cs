@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class PhraseDisplay : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PhraseDisplay : MonoBehaviour
     [SerializeField] TMP_Text WrongWord;
     [SerializeField] TMP_Text Word;
     [SerializeField] PhraseSO phraseSO;
+    [SerializeField] Image ProgressBarSprite;
     public PhraseSO PhraseSO { get { return phraseSO; } }
     bool stateCorrectLetter;
     TypingGameController typingGameController;
@@ -17,6 +19,8 @@ public class PhraseDisplay : MonoBehaviour
     const string WRONGLETTERCOLOR = "<color=\"red\">";
     const string CORRECTLETTERCOLOR = "<color=\"grey\">";
     const string OGLETTERCOLOR = "<color=\"white\">";
+    int Ticks = 100;
+    int currentTicks = 100;
 
     public void Initialize(PhraseSO phraseSO, TypingGameController typingGameController)
     {
@@ -73,5 +77,14 @@ public class PhraseDisplay : MonoBehaviour
         FinishedWord.text = phraseSO.Value;
         WrongWord.text = phraseSO.Value;
         Word.text = phraseSO.Value;
+    }
+    public void Tick()
+    {
+        currentTicks --;
+        ProgressBarSprite.fillAmount = currentTicks*1f/Ticks;
+        if(currentTicks == 0)
+        {
+            Debug.Log("you lost the fish");
+        }
     }
 }

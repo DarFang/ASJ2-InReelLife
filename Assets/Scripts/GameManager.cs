@@ -86,4 +86,8 @@ public class GameManager : MonoBehaviour
     {
         return inputController.GetComponent<Inventory>().Money;
     }
+    public bool IsPlayerFishing()
+    {
+        return inputController.playerState == PlayerState.FishingFish;
+    }
 }

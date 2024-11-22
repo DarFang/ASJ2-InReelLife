@@ -6,13 +6,15 @@ using System;
 public class PhraseSO : ScriptableObject 
 {
     public string Value = "";
-    public Tier tier = Tier.T0;
+    public string Tier = "Tier0";
+    public string Event;
+    public string Location;
 }
 
-public enum Tier
-{
-    T0,
-    T1,
-    T2,
-    T3,
-}
+// public enum Tier
+// {
+//     Tier0,
+//     Tier1,
+//     Tier2,
+//     Tier3,
+// }

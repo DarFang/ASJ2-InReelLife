@@ -24,6 +24,7 @@ public class InventoryDisplay : MonoBehaviour
     }
     private void Update() 
     {
+        if(GameManager.Instance.IsPlayerFishing()) return;
         if (Input.GetKeyDown(KeyCode.B))
         {
             isActive = !isActive;
