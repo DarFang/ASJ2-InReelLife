@@ -55,6 +55,12 @@ public class PhraseDisplay : MonoBehaviour
         Word.text = CORRECTLETTERCOLOR + phraseSO.Value.Substring(0, index) + 
                     WRONGLETTERCOLOR + phraseSO.Value[index] + 
                     OGLETTERCOLOR + phraseSO.Value.Substring(index+1);
+        currentTicks -= 5;
+        if(currentTicks <= 0)
+        {
+            Debug.Log("you lost the fish");
+            typingGameController.PhraseLost();
+        }
     }
     void CorrectLetter()
     {
@@ -82,7 +88,7 @@ public class PhraseDisplay : MonoBehaviour
     {
         currentTicks --;
         ProgressBarSprite.fillAmount = currentTicks*1f/Ticks;
-        if(currentTicks == 0)
+        if(currentTicks <= 0)
         {
             Debug.Log("you lost the fish");
             typingGameController.PhraseLost();
