@@ -20,14 +20,13 @@ public class Inventory : MonoBehaviour
         inventoryFishSize = playerInventory.inventoryFishSize;
         inventoryLimit = playerInventory.inventoryLimit;
         money = playerInventory.Money;
-        AddFish();
     }
     private void OnDestroy() 
     {
         InventoryData playerInventory = new InventoryData(fishList, inventoryFishSize, inventoryLimit, Money);
         SaveLoadManager.Instance.SaveInventoryState(playerInventory);
     }
-    void AddFish()
+    public void AddFish()
     {
         if(inventoryLimit<=fishList.Count)
         {
@@ -36,6 +35,16 @@ public class Inventory : MonoBehaviour
         }
         fishList.Add(new Fish("string"));
         Debug.Log("addfish");
+    }
+    public void AddFish(LootSO lootSO)
+    {
+        if(inventoryLimit<=fishList.Count)
+        {
+            Debug.Log("cannot add anymore fish");
+            return;   
+        }
+        fishList.Add(new Fish(lootSO.Value, lootSO.cost));
+        Debug.Log("add " + lootSO.Value);
     }
     private void Update() 
     {
@@ -105,9 +114,6 @@ public class Inventory : MonoBehaviour
         fishList = new List<Fish>();
         money += TotalCost;
     }
-
-
-
 }
 [System.Serializable]
 public class InventoryData

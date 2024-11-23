@@ -2,6 +2,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -89,5 +90,22 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerFishing()
     {
         return inputController.playerState == PlayerState.FishingFish;
+    }
+
+    public void AddListener()
+    {
+        // typingGameController.OnFishLose.AddListener();
+        typingGameController.OnFishWin.AddListener(FishWin);
+    }
+
+    public void RemoveListener()
+    {
+        // typingGameController.OnFishLose.RemoveListener();
+        typingGameController.OnFishWin.RemoveListener(FishWin);
+    }
+    public void FishWin()
+    {
+        Debug.Log("fish win");
+        inputController.GetComponent<Inventory>().AddFish(currentLoot);
     }
 }

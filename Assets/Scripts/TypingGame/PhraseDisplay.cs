@@ -19,8 +19,8 @@ public class PhraseDisplay : MonoBehaviour
     const string WRONGLETTERCOLOR = "<color=\"red\">";
     const string CORRECTLETTERCOLOR = "<color=\"grey\">";
     const string OGLETTERCOLOR = "<color=\"white\">";
-    int Ticks = 100;
-    int currentTicks = 100;
+    int Ticks = 150;
+    int currentTicks = 150;
 
     public void Initialize(PhraseSO phraseSO, TypingGameController typingGameController)
     {
@@ -85,6 +85,7 @@ public class PhraseDisplay : MonoBehaviour
         if(currentTicks == 0)
         {
             Debug.Log("you lost the fish");
+            typingGameController.PhraseLost();
         }
     }
 }

@@ -2104,6 +2104,11 @@ PrefabInstance:
       propertyPath: money
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5210063899266565097, guid: fa5747cfd0846b8488229ebb42ca04ed,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6531109923353081781, guid: fa5747cfd0846b8488229ebb42ca04ed,
         type: 3}
       propertyPath: m_Name
