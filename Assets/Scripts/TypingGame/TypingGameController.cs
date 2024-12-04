@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TypingGameController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TypingGameController : MonoBehaviour
     List<PhraseDisplay> PhraseDisplays  = new List<PhraseDisplay>();
     [SerializeField] int padding = 30;
     Queue<List<PhraseSO>> PopulatedPhrases2 = new Queue<List<PhraseSO>>();
+    public UnityEvent OnFishWin = new UnityEvent();
+    public UnityEvent OnFishLose = new UnityEvent();
     private void Start() 
     {
         // currentPhraseDisplay = Instantiate(phraseDisplayPrefab, this.transform);
@@ -21,17 +24,27 @@ public class TypingGameController : MonoBehaviour
         // PopulatePhrases(6);
         LootTable = ParseCSV("Phrase Bank.csv");
         gameObject.SetActive(false);
+        AddListeners();
     }
     private void OnEnable() 
     {
         PopulatePhrases(6);
         StartCoroutine(TickDisplay());
     }
+    public void AddListeners()
+    {
+        GameManager.Instance.AddListener();
+    }
+    public void RemoveListeners()
+    {
+        GameManager.Instance.RemoveListener();
+    }
     private void OnDisable() 
     {
         GameManager.Instance.FinishFishing();
         gameObject.SetActive(false);
         StopAllCoroutines();
+        RemoveListeners();
     }
     List<int> RandomList(int number)
     {
@@ -161,7 +174,7 @@ public class TypingGameController : MonoBehaviour
                 CheckKey('.');
                 return;
             }
-            if(Input.GetKeyDown(KeyCode.BackQuote))
+            if(Input.GetKeyDown(KeyCode.Quote))
             {
                 CheckKey('\'');
                 return;
@@ -169,6 +182,16 @@ public class TypingGameController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 CheckKey(' ');
+                return;
+            }
+            if(Input.GetKeyDown(KeyCode.Exclaim))
+            {
+                CheckKey('!');
+                return;
+            }
+            if(Input.GetKeyDown(KeyCode.DoubleQuote))
+            {
+                CheckKey('\"');
                 return;
             }
             if(Input.GetKeyDown(KeyCode.Backspace))
@@ -222,6 +245,7 @@ public class TypingGameController : MonoBehaviour
             else
             {
                 Debug.Log("you win");
+                OnFishWin?.Invoke();
                 gameObject.SetActive(false);
             }
         }
@@ -257,6 +281,12 @@ public class TypingGameController : MonoBehaviour
         }
 
         return results;
+    }
+
+    public void PhraseLost()
+    {
+        gameObject.SetActive(false);
+        OnFishLose?.Invoke();
     }
 }
 

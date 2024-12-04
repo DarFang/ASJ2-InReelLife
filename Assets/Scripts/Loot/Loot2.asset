@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e787a5d5db7e941a12d8180957d3b0, type: 3}
   m_Name: Loot2
   m_EditorClassIdentifier: 
-  Value: fish
+  Value: loot
+  cost: 2

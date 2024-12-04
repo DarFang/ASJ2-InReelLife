@@ -6,4 +6,5 @@ using UnityEngine;
 public class LootSO : ScriptableObject 
 {
     public string Value = "fish";
+    public int cost = 5;
 }
